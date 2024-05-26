@@ -81,6 +81,11 @@ def index():
 	
 	for i in range(25):
 		try:
+			
+			for any in User.query.all():
+				db.session.delete(any)
+				db.session.commit()
+				
 			user = User(name=f"{i}",email=f"{i}",password=f"{i}",role=f"{i}",pub_key=f"{i}")
 			
 			db.session.add(user)
@@ -171,4 +176,5 @@ def create_pub():
 	except Exception as e:
 		return jsonify({"Error": str(e)})
 			
+
 		
