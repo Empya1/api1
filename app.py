@@ -122,7 +122,7 @@ def login():
 					
 			except Exception as e:
 				print(e)
-				return jsonify({"Error":e})
+				return jsonify({"Error": str(e)})
 				
 		else: 
 			print(e)
@@ -169,6 +169,6 @@ def create_pub():
 		db.session.commit()
 			
 	except Exception as e:
-		return jsonify({"Error": e})
+		return jsonify({"Error": str(e)})
 			
 		
