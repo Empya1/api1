@@ -109,7 +109,7 @@ def login():
 			
 				data = request.json
 				print("fetched data")
-				
+				print(data)
 				user = User.query.filter(User.email==data["email"], User.pub_key==data["pub_key"]).all() 
 				
 				print(user)
