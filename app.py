@@ -95,38 +95,41 @@ def index():
 @app.route("/login", methods=["POST"])
 
 def login():
-	print("logging in")
-	
-	if request.is_json:
+	if request.method == "POST":
+		print("logging in")
 		
-		try:
-		
-			data = request.json
-			print("fetched data")
+		if request.is_json:
 			
-			user = User.query.filter(User.email==data["email"], User.pub_key==data["pub_key"]).all() 
+			try:
 			
-			print(user)
-			
-			
-			if len(user)==1:
-				token = token_urlsafe(random.randint(20,40))
-				print(token)
-				return jsonify({"access_token":str(token)})
-			
+				data = request.json
+				print("fetched data")
 				
-			else:
-				print("not exist")
-				return jsonify({"Error":"User does not exist or is not permitted"})
+				user = User.query.filter(User.email==data["email"], User.pub_key==data["pub_key"]).all() 
 				
-		except Exception as e:
+				print(user)
+				
+				
+				if len(user)==1:
+					token = token_urlsafe(random.randint(20,40))
+					print(token)
+					return jsonify({"access_token":str(token)})
+				
+					
+				else:
+					print("not exist")
+					return jsonify({"Error":"User does not exist or is not permitted"})
+					
+			except Exception as e:
+				print(e)
+				return jsonify({"Error":e})
+				
+		else: 
 			print(e)
-			return jsonify({"Error":e})
-			
-	else: 
-		print(e)
-		return jsonify({"Error":"invalid request"})
-		
+			return jsonify({"Error":"invalid request"})
+
+	else:
+		return jsonify({"Error":"Method not allowed"})			
 		
 @app.route("/pub/create")
 
