@@ -173,9 +173,10 @@ def create_pub():
 			
 		pub_obj = Pub.query.filter(Pub.url==url, title==title).first()
 			
-		new_htmlcomponent = HtmlComponent(meta_title=meta,content=content,pub_id=pub_obj.id)
+		new_htmlcomponent = HtmlComponent(meta_title=meta,content=content)
 		db.session.add(new_htmlcomponent)
 		db.session.commit()
+		
 		print("created conp")
 		print(pub_obj.html_comp)
 		print(new_htmlcomponent.pub)
@@ -183,4 +184,6 @@ def create_pub():
 			
 	except Exception as e:
 		return jsonify({"Error": str(e)})
+			
+
 		
