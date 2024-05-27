@@ -136,7 +136,7 @@ def login():
 	else:
 		return jsonify({"Error":"Method not allowed"})			
 		
-@app.route("/pub/create")
+@app.route("/pub/create", methods=["POST"])
 
 def create_pub():
 		
