@@ -38,7 +38,7 @@ class Pub(db.Model):
 	image = db.Column(db.String())
 	user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 	url = db.Column(db.String())
-	html_comp = db.relationship("HtmlComponent", backref="pub")
+	html_comp = db.relationship("HtmlComponent", backref="publish")
 	
 	def __repr__(self):
 		return f"< Pub : {self.name} >"
@@ -181,11 +181,10 @@ def create_pub():
 		
 		print("created conp")
 		print(pub_obj.html_comp)
-		print(new_htmlcomponent.pub)
+		print(new_htmlcomponent.publish)
 		return jsonify({"Success":"Created pub"})
 			
 	except Exception as e:
 		return jsonify({"Error": str(e)})
 			
-
 		
