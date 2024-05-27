@@ -173,7 +173,7 @@ def create_pub():
 			
 		pub_obj = Pub.query.filter(Pub.url==url).first()
 			
-		new_htmlcomponent = HtmlComponent(meta_title=meta,content=content,pub=pub_obj)
+		new_htmlcomponent = HtmlComponent(meta_title=meta,content=content,publish=pub_obj)
 		db.session.add(new_htmlcomponent)
 		db.session.commit()
 		
