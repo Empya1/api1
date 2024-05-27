@@ -1,6 +1,6 @@
 from flask import request, jsonify, Blueprint,session, Flask
-from secrets import token_urlsafe
 
+from secrets import token_urlsafe
 import random
 
 from flask_login import UserMixin
@@ -141,6 +141,8 @@ def login():
 def create_pub():
 		
 	data = request.json
+	
+	print(data)
 		
 	try:
 			
@@ -149,6 +151,7 @@ def create_pub():
 		user_password = data["password"]
 			
 		user = User.query.filter(User.email==user_email, User.password==user_password).first()
+		print(user)
 			
 		#FOR PUB
 			
@@ -166,15 +169,17 @@ def create_pub():
 		new_pub = Pub(title=title,desc=desc,image=image,user_id=user_id,url=url)
 		db.session.add(new_pub)
 		db.session.commit()
+		print("created pub")
 			
 		pub_obj = Pub.query.filter(Pub.url==url, title==title).first()
 			
 		new_htmlcomponent = HtmlComponent(meta=meta,content=content,pub_id=pub_obj.id)
 		db.session.add(new_htmlcomponent)
 		db.session.commit()
+		print("created conp")
+		return jsonify({"Success":"Created pub"})
 			
 	except Exception as e:
 		return jsonify({"Error": str(e)})
 			
-
 		
