@@ -140,11 +140,11 @@ def login():
 
 def create_pub():
 		
-	data = request.json
 	
-	print(data)
 		
-	try:
+	try: 
+		data = request.json 
+		print(data)
 			
 		# FOR USER
 		user_email = data["email"]
@@ -177,9 +177,10 @@ def create_pub():
 		db.session.add(new_htmlcomponent)
 		db.session.commit()
 		print("created conp")
+		print(pub_obj.html_comp)
+		print(new_htmlcomponent.pub)
 		return jsonify({"Success":"Created pub"})
 			
 	except Exception as e:
 		return jsonify({"Error": str(e)})
-			
 		
