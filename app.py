@@ -41,7 +41,7 @@ class Pub(db.Model):
 	html_comp = db.relationship("HtmlComponent", backref="publish")
 	
 	def __repr__(self):
-		return f"< Pub : {self.name} >"
+		return f"< Pub : {self.id} >"
 	
 class HtmlComponent(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
