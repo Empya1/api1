@@ -171,13 +171,13 @@ def create_pub():
 		db.session.commit()
 		print("created pub")
 			
-		pub_obj = Pub.query.filter(Pub.url==url).first()
+		pub_obj = Pub.query.filter(Pub.title=="24").first()
 			
 		new_htmlcomponent = HtmlComponent(meta_title=meta,content=content,publish=pub_obj)
 		db.session.add(new_htmlcomponent)
 		db.session.commit()
 		
-		new_htmlcomponent = HtmlComponent.query.filter(HtmlComponent.meta_title=="24")
+		new_htmlcomponent = HtmlComponent.query.filter(HtmlComponent.meta_title=="24").first()
 		
 		print("created conp")
 		print(pub_obj.html_comp)
