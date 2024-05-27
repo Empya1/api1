@@ -51,7 +51,7 @@ class HtmlComponent(db.Model):
 	
 	
 	def __repr__(self):
-		return f"< HtmlComponent : {self.name} >"
+		return f"< HtmlComponent : {self.id} >"
 	
 class Comment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
